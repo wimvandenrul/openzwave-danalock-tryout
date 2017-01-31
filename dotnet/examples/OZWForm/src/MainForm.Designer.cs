@@ -66,6 +66,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NodeGridView)).BeginInit();
             this.NodeContextMenuStrip.SuspendLayout();
             this.MenuBar.SuspendLayout();
@@ -82,7 +84,7 @@
             this.NodeGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.NodeGridView.ContextMenuStrip = this.NodeContextMenuStrip;
             this.NodeGridView.Location = new System.Drawing.Point(17, 46);
-            this.NodeGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NodeGridView.Margin = new System.Windows.Forms.Padding(4);
             this.NodeGridView.MultiSelect = false;
             this.NodeGridView.Name = "NodeGridView";
             this.NodeGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -359,27 +361,49 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(729, 4);
+            this.button1.Location = new System.Drawing.Point(536, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(109, 23);
             this.button1.TabIndex = 3;
-            this.button1.Text = "test lock";
+            this.button1.Text = "Close lock";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.CloseLock_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(661, 5);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(109, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Open lock";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.OpenLock_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(271, 5);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(214, 23);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Show current lock State";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.ShowCurrentLockState_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(845, 556);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.NodeGridView);
             this.Controls.Add(this.MenuBar);
             this.MainMenuStrip = this.MenuBar;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
-            this.Text = "OpenZWave Test";
+            this.Text = "OpenZWave and DanaLock Test";
             ((System.ComponentModel.ISupportInitialize)(this.NodeGridView)).EndInit();
             this.NodeContextMenuStrip.ResumeLayout(false);
             this.MenuBar.ResumeLayout(false);
@@ -430,6 +454,8 @@
 		private System.Windows.Forms.ToolStripMenuItem eraseAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addSecureDeviceToolStripMenuItem;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

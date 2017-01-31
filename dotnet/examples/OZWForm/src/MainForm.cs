@@ -147,38 +147,38 @@ namespace OZWForm
             column.ToolTipText = "The product name of the Z-Wave device.";
             NodeGridView.Columns.Add(column);
 
-/*            // Poll Interval
-            column = new DataGridViewTextBoxColumn();
-            column.DataPropertyName = "PollInterval";
-            column.Name = "Poll Interval";
-            column.ReadOnly = false;
-            column.Frozen = false;
-            column.Resizable = DataGridViewTriState.True;
-            column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            column.ToolTipText = "Polling interval in seconds, or zero for no polling.\nNewer devices should not need to be polled for\nyour PC to know their current state.\nFor those that do requre polling, the interval should\nbe as long as possible to reduce network traffic.";
-            NodeGridView.Columns.Add(column);
-*/
-/*            // Schema
-            column = new DataGridViewTextBoxColumn();
-            column.DataPropertyName = "Schema";
-            column.Name = "Schema";
-            column.ReadOnly = true;
-            column.Frozen = false;
-            column.Resizable = DataGridViewTriState.True;
-            column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            column.ToolTipText = "The xPL message schema family that will be used\nif the 'Use zwave.basic' option is not checked.\nThe schema is chosen automatically according to\nthe Z-Wave device type, and cannot be changed.";
-            NodeGridView.Columns.Add(column);
+            /*            // Poll Interval
+                        column = new DataGridViewTextBoxColumn();
+                        column.DataPropertyName = "PollInterval";
+                        column.Name = "Poll Interval";
+                        column.ReadOnly = false;
+                        column.Frozen = false;
+                        column.Resizable = DataGridViewTriState.True;
+                        column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                        column.ToolTipText = "Polling interval in seconds, or zero for no polling.\nNewer devices should not need to be polled for\nyour PC to know their current state.\nFor those that do requre polling, the interval should\nbe as long as possible to reduce network traffic.";
+                        NodeGridView.Columns.Add(column);
+            */
+            /*            // Schema
+                        column = new DataGridViewTextBoxColumn();
+                        column.DataPropertyName = "Schema";
+                        column.Name = "Schema";
+                        column.ReadOnly = true;
+                        column.Frozen = false;
+                        column.Resizable = DataGridViewTriState.True;
+                        column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                        column.ToolTipText = "The xPL message schema family that will be used\nif the 'Use zwave.basic' option is not checked.\nThe schema is chosen automatically according to\nthe Z-Wave device type, and cannot be changed.";
+                        NodeGridView.Columns.Add(column);
 
-            // ZWaveBasic
-            //check = new DataGridViewCheckBoxColumn();
-            //check.DataPropertyName = "ZWaveBasic";
-            //check.Name = "Use zwave.basic";
-            //check.Frozen = false;
-            //check.Resizable = DataGridViewTriState.True;
-            //check.SortMode = DataGridViewColumnSortMode.NotSortable;
-            //check.ToolTipText = "If the box is checked, the device will send and respond to\nnative zwave.basic messages rather than those of the\ngeneric schema family listed under the Schema column.";
-            //NodeGridView.Columns.Add(check);
-*/
+                        // ZWaveBasic
+                        //check = new DataGridViewCheckBoxColumn();
+                        //check.DataPropertyName = "ZWaveBasic";
+                        //check.Name = "Use zwave.basic";
+                        //check.Frozen = false;
+                        //check.Resizable = DataGridViewTriState.True;
+                        //check.SortMode = DataGridViewColumnSortMode.NotSortable;
+                        //check.ToolTipText = "If the box is checked, the device will send and respond to\nnative zwave.basic messages rather than those of the\ngeneric schema family listed under the Schema column.";
+                        //NodeGridView.Columns.Add(check);
+            */
             // Level
             column = new DataGridViewTextBoxColumn();
             column.DataPropertyName = "Level";
@@ -208,12 +208,12 @@ namespace OZWForm
             m_options.Create(@"..\..\..\..\..\..\..\config\", @"", @"");
 
             // Add any app specific options here...
-            m_options.AddOptionInt("SaveLogLevel", (int) ZWLogLevel.Detail);
-                // ordinarily, just write "Detail" level messages to the log
-            m_options.AddOptionInt("QueueLogLevel", (int) ZWLogLevel.Debug);
-                // save recent messages with "Debug" level messages to be dumped if an error occurs
-            m_options.AddOptionInt("DumpTriggerLevel", (int) ZWLogLevel.Error);
-                // only "dump" Debug  to the log emessages when an error-level message is logged
+            m_options.AddOptionInt("SaveLogLevel", (int)ZWLogLevel.Detail);
+            // ordinarily, just write "Detail" level messages to the log
+            m_options.AddOptionInt("QueueLogLevel", (int)ZWLogLevel.Debug);
+            // save recent messages with "Debug" level messages to be dumped if an error occurs
+            m_options.AddOptionInt("DumpTriggerLevel", (int)ZWLogLevel.Error);
+            // only "dump" Debug  to the log emessages when an error-level message is logged
 
             // Lock the options
             m_options.Lock();
@@ -226,7 +226,7 @@ namespace OZWForm
             // Add a driver
             m_driverPort = @"\\.\COM6";
             m_manager.AddDriver(m_driverPort);
-//			m_manager.AddDriver(@"HID Controller", ZWControllerInterface.Hid);
+            //			m_manager.AddDriver(@"HID Controller", ZWControllerInterface.Hid);
         }
 
         /// <summary>
@@ -250,170 +250,170 @@ namespace OZWForm
             switch (m_notification.GetType())
             {
                 case ZWNotification.Type.ValueAdded:
-                {
-                    Node node = GetNode(m_notification.GetHomeId(), m_notification.GetNodeId());
-                    if (node != null)
                     {
-                        node.AddValue(m_notification.GetValueID());
+                        Node node = GetNode(m_notification.GetHomeId(), m_notification.GetNodeId());
+                        if (node != null)
+                        {
+                            node.AddValue(m_notification.GetValueID());
+                        }
+                        break;
                     }
-                    break;
-                }
 
                 case ZWNotification.Type.ValueRemoved:
-                {
-                    Node node = GetNode(m_notification.GetHomeId(), m_notification.GetNodeId());
-                    if (node != null)
                     {
-                        node.RemoveValue(m_notification.GetValueID());
+                        Node node = GetNode(m_notification.GetHomeId(), m_notification.GetNodeId());
+                        if (node != null)
+                        {
+                            node.RemoveValue(m_notification.GetValueID());
+                        }
+                        break;
                     }
-                    break;
-                }
 
                 case ZWNotification.Type.ValueChanged:
-                {
-/*						Console.WriteLine("Value Changed");
-						ZWValueID v = m_notification.GetValueID();
-						Console.WriteLine("  Node : " + v.GetNodeId().ToString());
-						Console.WriteLine("  CC   : " + v.GetCommandClassId().ToString());
-						Console.WriteLine("  Type : " + v.GetType().ToString());
-						Console.WriteLine("  Index: " + v.GetIndex().ToString());
-						Console.WriteLine("  Inst : " + v.GetInstance().ToString());
-						Console.WriteLine("  Value: " + GetValue(v).ToString());
-						Console.WriteLine("  Label: " + m_manager.GetValueLabel(v));
-						Console.WriteLine("  Help : " + m_manager.GetValueHelp(v));
-						Console.WriteLine("  Units: " + m_manager.GetValueUnits(v));
-*/
-                    break;
-                }
+                    {
+                        /*						Console.WriteLine("Value Changed");
+                                                ZWValueID v = m_notification.GetValueID();
+                                                Console.WriteLine("  Node : " + v.GetNodeId().ToString());
+                                                Console.WriteLine("  CC   : " + v.GetCommandClassId().ToString());
+                                                Console.WriteLine("  Type : " + v.GetType().ToString());
+                                                Console.WriteLine("  Index: " + v.GetIndex().ToString());
+                                                Console.WriteLine("  Inst : " + v.GetInstance().ToString());
+                                                Console.WriteLine("  Value: " + GetValue(v).ToString());
+                                                Console.WriteLine("  Label: " + m_manager.GetValueLabel(v));
+                                                Console.WriteLine("  Help : " + m_manager.GetValueHelp(v));
+                                                Console.WriteLine("  Units: " + m_manager.GetValueUnits(v));
+                        */
+                        break;
+                    }
 
                 case ZWNotification.Type.Group:
-                {
-                    break;
-                }
+                    {
+                        break;
+                    }
 
                 case ZWNotification.Type.NodeAdded:
-                {
-                    // if this node was in zwcfg*.xml, this is the first node notification
-                    // if not, the NodeNew notification should already have been received
-                    if (GetNode(m_notification.GetHomeId(), m_notification.GetNodeId()) == null)
                     {
+                        // if this node was in zwcfg*.xml, this is the first node notification
+                        // if not, the NodeNew notification should already have been received
+                        if (GetNode(m_notification.GetHomeId(), m_notification.GetNodeId()) == null)
+                        {
+                            Node node = new Node();
+                            node.ID = m_notification.GetNodeId();
+                            node.HomeID = m_notification.GetHomeId();
+                            m_nodeList.Add(node);
+                        }
+                        break;
+                    }
+
+                case ZWNotification.Type.NodeNew:
+                    {
+                        // Add the new node to our list (and flag as uninitialized)
                         Node node = new Node();
                         node.ID = m_notification.GetNodeId();
                         node.HomeID = m_notification.GetHomeId();
                         m_nodeList.Add(node);
+                        break;
                     }
-                    break;
-                }
-
-                case ZWNotification.Type.NodeNew:
-                {
-                    // Add the new node to our list (and flag as uninitialized)
-                    Node node = new Node();
-                    node.ID = m_notification.GetNodeId();
-                    node.HomeID = m_notification.GetHomeId();
-                    m_nodeList.Add(node);
-                    break;
-                }
 
                 case ZWNotification.Type.NodeRemoved:
-                {
-                    foreach (Node node in m_nodeList)
                     {
-                        if (node.ID == m_notification.GetNodeId())
+                        foreach (Node node in m_nodeList)
                         {
-                            m_nodeList.Remove(node);
-                            break;
+                            if (node.ID == m_notification.GetNodeId())
+                            {
+                                m_nodeList.Remove(node);
+                                break;
+                            }
                         }
+                        break;
                     }
-                    break;
-                }
 
                 case ZWNotification.Type.NodeProtocolInfo:
-                {
-                    Node node = GetNode(m_notification.GetHomeId(), m_notification.GetNodeId());
-                    if (node != null)
                     {
-                        node.Label = m_manager.GetNodeType(m_homeId, node.ID);
+                        Node node = GetNode(m_notification.GetHomeId(), m_notification.GetNodeId());
+                        if (node != null)
+                        {
+                            node.Label = m_manager.GetNodeType(m_homeId, node.ID);
+                        }
+                        break;
                     }
-                    break;
-                }
 
                 case ZWNotification.Type.NodeNaming:
-                {
-                    Node node = GetNode(m_notification.GetHomeId(), m_notification.GetNodeId());
-                    if (node != null)
                     {
-                        node.Manufacturer = m_manager.GetNodeManufacturerName(m_homeId, node.ID);
-                        node.Product = m_manager.GetNodeProductName(m_homeId, node.ID);
-                        node.Location = m_manager.GetNodeLocation(m_homeId, node.ID);
-                        node.Name = m_manager.GetNodeName(m_homeId, node.ID);
+                        Node node = GetNode(m_notification.GetHomeId(), m_notification.GetNodeId());
+                        if (node != null)
+                        {
+                            node.Manufacturer = m_manager.GetNodeManufacturerName(m_homeId, node.ID);
+                            node.Product = m_manager.GetNodeProductName(m_homeId, node.ID);
+                            node.Location = m_manager.GetNodeLocation(m_homeId, node.ID);
+                            node.Name = m_manager.GetNodeName(m_homeId, node.ID);
+                        }
+                        break;
                     }
-                    break;
-                }
 
                 case ZWNotification.Type.NodeEvent:
-                {
-                    break;
-                }
+                    {
+                        break;
+                    }
 
                 case ZWNotification.Type.PollingDisabled:
-                {
-                    Console.WriteLine("Polling disabled notification");
-                    break;
-                }
+                    {
+                        Console.WriteLine("Polling disabled notification");
+                        break;
+                    }
 
                 case ZWNotification.Type.PollingEnabled:
-                {
-                    Console.WriteLine("Polling enabled notification");
-                    break;
-                }
+                    {
+                        Console.WriteLine("Polling enabled notification");
+                        break;
+                    }
 
                 case ZWNotification.Type.DriverReady:
-                {
-                    m_homeId = m_notification.GetHomeId();
-                    toolStripStatusLabel1.Text = "Initializing...driver with Home ID 0x" + m_homeId.ToString("X8") +
-                                                 " is ready.";
-                    break;
-                }
+                    {
+                        m_homeId = m_notification.GetHomeId();
+                        toolStripStatusLabel1.Text = "Initializing...driver with Home ID 0x" + m_homeId.ToString("X8") +
+                                                     " is ready.";
+                        break;
+                    }
                 case ZWNotification.Type.NodeQueriesComplete:
-                {
-                    // as an example, enable query of BASIC info (CommandClass = 0x20)
-                    Node node = GetNode(m_notification.GetHomeId(), m_notification.GetNodeId());
-                    //if (node != null)
-                    //{
-                    //    foreach (ZWValueID vid in node.Values)
-                    //    {
-                    //        if (vid.GetCommandClassId() == 0x84)	// remove this "if" to poll all values
-                    //            m_manager.EnablePoll(vid);
-                    //    }
-                    //}
-                    toolStripStatusLabel1.Text = "Initializing...node " + node.ID + " query complete.";
-                    break;
-                }
+                    {
+                        // as an example, enable query of BASIC info (CommandClass = 0x20)
+                        Node node = GetNode(m_notification.GetHomeId(), m_notification.GetNodeId());
+                        //if (node != null)
+                        //{
+                        //    foreach (ZWValueID vid in node.Values)
+                        //    {
+                        //        if (vid.GetCommandClassId() == 0x84)	// remove this "if" to poll all values
+                        //            m_manager.EnablePoll(vid);
+                        //    }
+                        //}
+                        toolStripStatusLabel1.Text = "Initializing...node " + node.ID + " query complete.";
+                        break;
+                    }
                 case ZWNotification.Type.EssentialNodeQueriesComplete:
-                {
-                    Node node = GetNode(m_notification.GetHomeId(), m_notification.GetNodeId());
-                    toolStripStatusLabel1.Text = "Initializing...node " + node.ID + " essential queries complete.";
-                    break;
-                }
+                    {
+                        Node node = GetNode(m_notification.GetHomeId(), m_notification.GetNodeId());
+                        toolStripStatusLabel1.Text = "Initializing...node " + node.ID + " essential queries complete.";
+                        break;
+                    }
                 case ZWNotification.Type.AllNodesQueried:
-                {
-                    toolStripStatusLabel1.Text = "Ready:  All nodes queried.";
-                    m_manager.WriteConfig(m_notification.GetHomeId());
-                    break;
-                }
+                    {
+                        toolStripStatusLabel1.Text = "Ready:  All nodes queried.";
+                        m_manager.WriteConfig(m_notification.GetHomeId());
+                        break;
+                    }
                 case ZWNotification.Type.AllNodesQueriedSomeDead:
-                {
-                    toolStripStatusLabel1.Text = "Ready:  All nodes queried but some are dead.";
-                    m_manager.WriteConfig(m_notification.GetHomeId());
-                    break;
-                }
+                    {
+                        toolStripStatusLabel1.Text = "Ready:  All nodes queried but some are dead.";
+                        m_manager.WriteConfig(m_notification.GetHomeId());
+                        break;
+                    }
                 case ZWNotification.Type.AwakeNodesQueried:
-                {
-                    toolStripStatusLabel1.Text = "Ready:  Awake nodes queried (but not some sleeping nodes).";
-                    m_manager.WriteConfig(m_notification.GetHomeId());
-                    break;
-                }
+                    {
+                        toolStripStatusLabel1.Text = "Ready:  Awake nodes queried (but not some sleeping nodes).";
+                        m_manager.WriteConfig(m_notification.GetHomeId());
+                        break;
+                    }
             }
 
             //NodeGridView.Refresh();
@@ -775,9 +775,49 @@ namespace OZWForm
             m_securityEnabled = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void CloseLock_Click(object sender, EventArgs e)
         {
-            Manager.SwitchAllOn(3939264261);
+            var id = new ZWValueID(m_homeId, 0x4, ZWValueID.ValueGenre.Basic, 0x62, 1, 0, ZWValueID.ValueType.Bool, 0);
+            bool currentValue;
+            Manager.GetValueAsBool(id, out currentValue);
+            if (currentValue)
+            {
+                MessageBox.Show("Already locked");
+            }
+            else
+            {
+                Manager.SetValue(id, true);
+            }
+        }
+
+        private void OpenLock_Click(object sender, EventArgs e)
+        {
+            var id = new ZWValueID(m_homeId, 0x4, ZWValueID.ValueGenre.Basic, 0x62, 1, 0, ZWValueID.ValueType.Bool, 0);
+            bool currentValue;
+            Manager.GetValueAsBool(id, out currentValue);
+            if (!currentValue)
+            {
+                MessageBox.Show("Already unlocked");
+            }
+            else
+            {
+                Manager.SetValue(id, false);
+            }
+        }
+
+        private void ShowCurrentLockState_Click(object sender, EventArgs e)
+        {
+            var id = new ZWValueID(m_homeId, 0x4, ZWValueID.ValueGenre.Basic, 0x62, 1, 0, ZWValueID.ValueType.Bool, 0);
+            bool currentValue;
+            Manager.GetValueAsBool(id, out currentValue);
+            if (currentValue)
+            {
+                MessageBox.Show("DanaLock is locked");
+            }
+            else
+            {
+                MessageBox.Show("DanaLock is unlocked");
+            }
         }
     }
 }
